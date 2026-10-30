@@ -196,7 +196,8 @@ a.ts-stat:hover, button.ts-stat:hover { border-color: var(--ts-color-border-stro
 .ts-table--fixed { table-layout: fixed; min-width: 720px; }                                      /* columns keep their width while a cell's text changes (G53); narrower, the wrap scrolls */
 .ts-table--fixed .ts-td-title { max-width: none; width: auto; text-overflow: clip; }
 .ts-td-fade { white-space: nowrap; overflow: hidden; text-overflow: clip; }
-.ts-td-fade > .ts-fade { display: block; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--ts-space-32)), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - var(--ts-space-32)), transparent); }   /* long text fades out before the column's end instead of three dots; the mask sits on the text, so a row's hover tint runs through (G53, G54) */
+.ts-td-fade > .ts-fade { display: block; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--ts-space-32)), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - var(--ts-space-32)), transparent); -webkit-mask-size: calc(100% + 2 * var(--ts-space-32)) 100%; mask-size: calc(100% + 2 * var(--ts-space-32)) 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0; animation: ts-fade-over linear both; animation-timeline: scroll(self x); }   /* long text fades out before the column's end instead of three dots; the mask sits on the text, so a row's hover tint runs through (G53, G54). The mask is parked past the cell's end and slides in only when the cell has more text than fits (a scroll-driven animation, G59); browsers without it cut the text at the column edge */
+@keyframes ts-fade-over { from, to { -webkit-mask-position: calc(-2 * var(--ts-space-32)) 0; mask-position: calc(-2 * var(--ts-space-32)) 0; } }
 .ts-td-sub { color: var(--ts-table-mini-fg); margin-left: var(--ts-space-8); font-weight: var(--ts-p-font-weight-regular); }
 .ts-td-num { text-align: right; }
 .ts-td-act { text-align: right; width: 1%; }
@@ -376,6 +377,6 @@ a.ts-stat:hover, button.ts-stat:hover { border-color: var(--ts-color-border-stro
   .ts-table--stack td.ts-m-label::before { content: attr(data-l) " "; color: var(--ts-color-text-secondary); font-size: var(--ts-gateway-type-sm-size); }
   .ts-table--stack .ts-outcome, .ts-table--stack .ts-by, .ts-table--stack .ts-due { white-space: normal; }
   .ts-table--stack.ts-table--fixed { min-width: 0; }
-  .ts-table--stack td.ts-td-fade, .ts-table--stack td.ts-td-fade > .ts-fade { white-space: normal; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .ts-table--stack td.ts-td-fade, .ts-table--stack td.ts-td-fade > .ts-fade { white-space: normal; overflow: visible; -webkit-mask-image: none; mask-image: none; animation: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ts-skeleton i { animation: none; } }
