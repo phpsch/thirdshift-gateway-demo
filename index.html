@@ -1,18 +1,57 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
-<title>ThirdShift Gateway demo</title>
-<link rel="stylesheet" href="latest/ci/css/ts-tokens.css"><link rel="stylesheet" href="latest/ci/css/ts-fonts.css"><link rel="stylesheet" href="latest/ci/css/ts-type.css">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>ThirdShift Gateway</title>
+<link rel="stylesheet" href="latest/ci/css/ts-tokens.css"><link rel="stylesheet" href="latest/ci/css/ts-fonts.css"><link rel="stylesheet" href="latest/ci/css/ts-type.css"><link rel="stylesheet" href="latest/ci/css/ts-components.css">
 <style>
-body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--ts-color-surface-page, #f5f5f5); color: var(--ts-color-text-primary); font-family: var(--ts-type-body-family, system-ui); }
-.doors { display: grid; gap: 12px; width: min(420px, calc(100vw - 32px)); }
-h1 { margin: 0 0 4px; font-size: 18px; font-weight: 500; }
-p { margin: 0 0 12px; color: var(--ts-color-text-secondary); font-size: 14px; }
-a { display: block; padding: 18px 20px; background: var(--ts-color-surface-raised, #fff); border: 1px solid var(--ts-color-border-default, #ddd); border-radius: 12px; color: inherit; text-decoration: none; }
-a:hover { border-color: var(--ts-color-border-strong, #bbb); }
-a b { display: block; font-weight: 500; }
-a small { color: var(--ts-color-text-secondary); }
+html, body { height: 100%; margin: 0; }
+body { display: grid; place-items: center; background: var(--ts-color-surface-page, #f5f5f5); color: var(--ts-color-text-primary); font-family: var(--ts-type-body-family, system-ui); }
+.gate { width: min(360px, calc(100vw - 32px)); padding: 28px 28px 24px; background: var(--ts-color-surface-raised, #fff); border: 1px solid var(--ts-color-border-default, #ddd); border-radius: var(--ts-card-radius, 12px); }
+.gate h1 { margin: 0 0 4px; font-size: 18px; font-weight: 500; }
+.gate p { margin: 0 0 20px; color: var(--ts-color-text-secondary); font-size: 14px; }
+.gate label { display: block; margin-bottom: 12px; }
+.gate input { width: 100%; box-sizing: border-box; height: 40px; padding: 0 12px; border: 1px solid var(--ts-color-border-strong, #bbb); border-radius: var(--ts-gateway-radius-control, 8px); background: var(--ts-color-surface-raised, #fff); color: inherit; font: inherit; }
+.gate input:focus { outline: 2px solid var(--ts-focus-color, #2563eb); outline-offset: 1px; }
+.gate button { width: 100%; height: 40px; border: 0; border-radius: var(--ts-gateway-radius-control, 8px); background: var(--ts-color-text-primary, #111); color: var(--ts-color-surface-raised, #fff); font: inherit; font-weight: 500; cursor: pointer; }
+.gate button[disabled] { opacity: .6; cursor: default; }
+.err { min-height: 20px; margin: 10px 0 0; color: var(--ts-color-status-denied-fg, #b42318); font-size: 13px; }
+.mark { display: inline-block; margin-bottom: 16px; font-family: var(--ts-gateway-type-sm-family, ui-monospace, monospace); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ts-color-text-tertiary); }
 </style></head>
-<body><div class="doors"><div><h1>ThirdShift Gateway demo</h1><p>Two doors, one password.</p></div>
-<a href="show/"><b>Presentation</b><small>Pushed 2026-11-03 · state up to G83 · The brief of 2 November built (Heymeta, milestones, waits, scope, swimlanes, Grant Thornton); waits escalate after day ten</small></a>
-<a href="latest/"><b>Working copy</b><small>Follows every change · G88</small></a>
-</div></body></html>
+<body>
+<form class="gate" id="gate" autocomplete="off">
+  <span class="mark">Demo</span>
+  <h1>ThirdShift Gateway</h1>
+  <p>This demo is locked. Enter the password to open it.</p>
+  <label><input type="password" id="pw" placeholder="Password" aria-label="Password" autofocus></label>
+  <button type="submit" id="go">Open</button>
+  <p class="err" id="err" role="alert"></p>
+</form>
+<script id="payload" type="application/json">{"iter":300000,"salt":"MzVWkhWEcgQAUYQwLNZCUg==","iv":"GLbRGTZbn548opfY","ct":"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"}</script>
+<script>
+(() => {
+  const P = JSON.parse(document.getElementById("payload").textContent);
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const KEY = "ts-demo-key";
+  const form = document.getElementById("gate"), pw = document.getElementById("pw"), err = document.getElementById("err"), go = document.getElementById("go");
+  async function keyFrom(password) {
+    const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+    return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(P.salt), iterations: P.iter, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+  }
+  async function open(key) {
+    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(P.iv) }, key, b64(P.ct));
+    const html = new TextDecoder().decode(plain);
+    try { sessionStorage.setItem(KEY, JSON.stringify(Array.from(new Uint8Array(await crypto.subtle.exportKey("raw", key))))); } catch (e) {}
+    document.open(); document.write(html); document.close();
+  }
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); err.textContent = ""; go.disabled = true;
+    try { await open(await keyFrom(pw.value)); }
+    catch (e) { err.textContent = "That is not the password."; pw.select(); go.disabled = false; }
+  });
+  // Same tab, already unlocked: open straight away (the Gateway reloads itself when the client pack changes).
+  // Only once this page is fully parsed: document.open() cannot replace a document that is still being written.
+  (async () => { try { const raw = sessionStorage.getItem(KEY); if (!raw) return;
+    if (document.readyState !== "complete") await new Promise(r => window.addEventListener("load", r, { once: true }));
+    const key = await crypto.subtle.importKey("raw", new Uint8Array(JSON.parse(raw)), { name: "AES-GCM" }, true, ["decrypt"]); await open(key); } catch (e) { try { sessionStorage.removeItem(KEY); } catch (_) {} } })();
+})();
+</script>
+</body></html>
