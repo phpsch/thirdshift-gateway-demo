@@ -40,6 +40,7 @@ b, strong { font-weight: var(--ts-p-font-weight-medium); }
 .ts-link {
   display: inline-flex; align-items: center; gap: var(--ts-space-4);
   color: var(--ts-link-fg); text-decoration: none; cursor: pointer; transition: color .15s;
+  text-align: inherit;   /* a link that is a <button> would centre its wrapped text (G85) */
 }
 .ts-link:hover { color: var(--ts-link-fg-hover); }
 .ts-link .ts-icon { width: var(--ts-icon-size-sm); height: var(--ts-icon-size-sm); }
