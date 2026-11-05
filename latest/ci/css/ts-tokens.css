@@ -251,6 +251,11 @@
   --ts-gateway-type-md-size: 13px;
   --ts-gateway-type-md-line: 18px;
   --ts-gateway-type-md-tracking: 0em;
+  --ts-gateway-type-read-family: var(--ts-p-font-family-text);
+  --ts-gateway-type-read-weight: var(--ts-p-font-weight-regular);
+  --ts-gateway-type-read-size: 13px;
+  --ts-gateway-type-read-line: 18px;
+  --ts-gateway-type-read-tracking: 0em;
   --ts-gateway-type-lg-family: var(--ts-p-font-family-text);
   --ts-gateway-type-lg-weight: var(--ts-p-font-weight-medium);
   --ts-gateway-type-lg-size: 16px;
@@ -701,4 +706,33 @@
   --ts-state-note-fg: var(--ts-color-text-secondary);
   --ts-form-label-fg: var(--ts-color-text-secondary);
   --ts-form-help-fg: var(--ts-color-text-secondary);
+}
+
+/* type-claude: PROPOSAL T12: the Gateway's type sizes at Claude's numbers (claude.ai, measured 2026-11-05): body 14/20, paragraphs 16/24, small text 13, labels 12, page titles 22/28. Switch on with data-ts-type="claude". */
+[data-ts-type="claude"] {
+  --ts-gateway-type-xs-family: var(--ts-p-font-family-mono);
+  --ts-gateway-type-xs-weight: var(--ts-p-font-weight-regular);
+  --ts-gateway-type-xs-size: 12px;
+  --ts-gateway-type-xs-line: 17px;
+  --ts-gateway-type-xs-tracking: 0em;
+  --ts-gateway-type-sm-family: var(--ts-p-font-family-mono);
+  --ts-gateway-type-sm-weight: var(--ts-p-font-weight-regular);
+  --ts-gateway-type-sm-size: 13px;
+  --ts-gateway-type-sm-line: 18px;
+  --ts-gateway-type-sm-tracking: 0em;
+  --ts-gateway-type-md-family: var(--ts-p-font-family-text);
+  --ts-gateway-type-md-weight: var(--ts-p-font-weight-regular);
+  --ts-gateway-type-md-size: 14px;
+  --ts-gateway-type-md-line: 20px;
+  --ts-gateway-type-md-tracking: 0em;
+  --ts-gateway-type-read-family: var(--ts-p-font-family-text);
+  --ts-gateway-type-read-weight: var(--ts-p-font-weight-regular);
+  --ts-gateway-type-read-size: 16px;
+  --ts-gateway-type-read-line: 24px;
+  --ts-gateway-type-read-tracking: 0em;
+  --ts-gateway-type-xl-family: var(--ts-p-font-family-text);
+  --ts-gateway-type-xl-weight: var(--ts-p-font-weight-medium);
+  --ts-gateway-type-xl-size: 22px;
+  --ts-gateway-type-xl-line: 28px;
+  --ts-gateway-type-xl-tracking: -0.004em;
 }
